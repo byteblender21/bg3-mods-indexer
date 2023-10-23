@@ -1,7 +1,13 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import java.io.File
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun reverseFileSearch(path: String) {
+    File(path).walkTopDown().forEach { file: File ->
+        if (file.isFile.and(file.path.endsWith(".txt"))) {
+            parseDataFile(file)
+        }
+    }
+}
+
+fun main(args: Array<String>) {
+    reverseFileSearch(args[0])
 }
